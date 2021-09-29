@@ -1,38 +1,55 @@
-package graficos;
+package com.pFiction.main;
 
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
+import com.pFiction.graficos.Spritsheet;
+import com.pFiction.objetos.Entity;
+import com.pFiction.objetos.Player;
+
 public class Game extends Canvas implements Runnable{
 
+	/**
+	 * 
+	 */
+	
+	private static final long serialVersionUID = 1L;
 	public static JFrame frame;
 	private Thread thread;
-	private boolean isRunning;
-	private final int WIDTH=380;
-	private final int HEIGHT=220;
-	private final int SCALE=2;
+	
+	private boolean isRunning = true;
+	
+	private final int HEIGHT = 768;
+	private final int WIDTH = 768;
+	private final int SCALE = 1;
 	
 	private BufferedImage image;
 	
-	private Spritsheet sheet;
-	private BufferedImage bk;
+	public List<Entity> entities;
+	public Spritsheet spritesheet;
 
 	
 	public Game() {
-		sheet=new Spritsheet("/background.jpeg");
-		bk=sheet.getSprite(0, 0, 380, 220);
-		setPreferredSize(new Dimension(WIDTH*SCALE,SCALE*HEIGHT));
 		
+		
+		setPreferredSize(new Dimension(WIDTH*SCALE,SCALE*HEIGHT));
 		initFrame();
 		
-		image=new BufferedImage(380, 220, BufferedImage.TYPE_INT_RGB);
+		image=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		entities = new ArrayList<Entity>();
+		spritesheet = new Spritsheet("/spritesheet.png");
+		
+		Player player = new Player(0, 0, 64, 64, spritesheet.getSprite(0, 0, 64, 64));
+		entities.add(player);
+		
 	}
 	
 	public void initFrame() {
@@ -68,25 +85,30 @@ public class Game extends Canvas implements Runnable{
 	
 	public void tick() {
 		
+		for (int i = 0; i < entities.size(); i++) {
+			Entity e = entities.get(i);
+			e.tick();
+		}
+		
 	}
+	
 	public void render() {
 		
 		BufferStrategy bs=this.getBufferStrategy();
+		
 		if(bs==null) {
 			this.createBufferStrategy(3);
 			return;
 		}
+		
 		Graphics g=image.getGraphics();
 		g.setColor(new Color(40,40,40));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		//Render background
-		
-		g.drawImage(bk, 0, 0, null);
-		
-		g.setFont(new Font("Arial",Font.BOLD,20));
-		g.setColor(Color.white);
-		g.drawString("O cão ...", 170, 120);
+		for (int i = 0; i < entities.size(); i++) {
+			Entity e = entities.get(i);
+			e.render(g);
+		}
 		
 		g.dispose();
 		g=bs.getDrawGraphics();
@@ -114,3 +136,4 @@ public class Game extends Canvas implements Runnable{
 	}
 
 }
+

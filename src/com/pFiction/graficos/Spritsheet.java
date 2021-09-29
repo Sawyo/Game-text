@@ -1,4 +1,4 @@
-package graficos;
+package com.pFiction.graficos;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
