@@ -8,6 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +20,11 @@ import com.pFiction.graficos.Spritsheet;
 import com.pFiction.objetos.Entity;
 import com.pFiction.objetos.Player;
 
+<<<<<<< Updated upstream
 public class Game extends Canvas implements Runnable,KeyListener{
+=======
+public class Game extends Canvas implements Runnable, KeyListener{
+>>>>>>> Stashed changes
 
 	/**
 	 * 
@@ -29,20 +36,29 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	private boolean isRunning = true;
 	
-	private final int HEIGHT = 768;
-	private final int WIDTH = 768;
-	private final int SCALE = 1;
+	private final int HEIGHT = 256;
+	private final int WIDTH = 256;
+	private final int SCALE = 3;
 	
 	private BufferedImage image;
 	
 	public List<Entity> entities;
 	public static Spritsheet spritesheet;
+<<<<<<< Updated upstream
 	
 	private Player player;
+=======
+>>>>>>> Stashed changes
 
+	private Player player;
 	
 	public Game() {
+<<<<<<< Updated upstream
 		addKeyListener(this);
+=======
+		
+		this.addKeyListener(this);
+>>>>>>> Stashed changes
 		
 		setPreferredSize(new Dimension(WIDTH*SCALE,SCALE*HEIGHT));
 		initFrame();
@@ -51,8 +67,12 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		entities = new ArrayList<Entity>();
 		spritesheet = new Spritsheet("/spritesheet.png");
 		
+<<<<<<< Updated upstream
 		player=new  Player(0, 0, 64, 64, spritesheet.getSprite(0, 0, 64, 64));
 	
+=======
+		player = new Player(0, 0, 64, 64, spritesheet.getSprite(0, 0, 64, 64));
+>>>>>>> Stashed changes
 		entities.add(player);
 		
 	}
@@ -92,6 +112,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
+			
+			/*if (e instanceof Player) {
+				//Estou dando tick no Player
+			}*/
+			
 			e.tick();
 		}
 		
@@ -143,11 +168,15 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
+<<<<<<< Updated upstream
 		
+=======
+>>>>>>> Stashed changes
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+<<<<<<< Updated upstream
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			
 			player.right=true;
@@ -161,12 +190,23 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN ||e.getKeyCode() == KeyEvent.VK_S) {
 			player.down=true;
 
+=======
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+			player.right = true;
+		}else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+			player.left = true;
+		}else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+			player.up = true;
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+			player.down = true;
+>>>>>>> Stashed changes
 		}
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+<<<<<<< Updated upstream
 if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			
 			player.right=false;
@@ -180,6 +220,18 @@ if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN ||e.getKeyCode() == KeyEvent.VK_S) {
 			player.down=false;
 
+=======
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+			player.right = false;
+		}else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+			player.left = false;
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+			player.up = false;
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+			player.down = false;
+>>>>>>> Stashed changes
 		}
 		
 	}
