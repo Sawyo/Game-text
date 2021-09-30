@@ -23,18 +23,10 @@ public class Entity {
 	}
 	
 	public void setX(int newX) {
-<<<<<<< Updated upstream
 		this.x=newX;
 	}
 	public void setY(int newY) {
 		this.x=newY;
-=======
-		this.x = newX;
-	}
-	
-	public void setY(int newY) {
-		this.y = newY;
->>>>>>> Stashed changes
 	}
 	
 	public int getX() {
