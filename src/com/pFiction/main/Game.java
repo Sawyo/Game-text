@@ -8,9 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,58 +30,99 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	private boolean isRunning = true;
 	
+	//Constantes da Tela
 	private final int HEIGHT = 761;
 	private final int WIDTH = 761;
 	private final int SCALE = 1;
 	
+	//Determinar o Tipo da variavel para a imagem de Fundo Padrão
 	private BufferedImage image;
 	
-	public List<Entity> entities;
+	//Variavel para deffinir Entidades
+	public static List<Entity> entities;
+	
+	//Chamada  de dados de imagem com seu metodo construtor
 	public static Spritsheet spritesheet;
 	public static Spritsheet floor;
     public static Spritsheet grass;
     public static Spritsheet wall;
+    public static Spritsheet asset1;
+    public static Spritsheet asset2;
+    
     
     public static World world;
 
-	public static Player player;
 	
+    public static Player player;
+	
+    
 	public Game() {
 		
+		//Chamando os Comandos para o Metodo
 		this.addKeyListener(this);
 		
+		//Definindo Tamanho da Tela -  Faz parte do Void initFrame
 		setPreferredSize(new Dimension(WIDTH*SCALE,SCALE*HEIGHT));
 		initFrame();
 		
+		//Criando imagem de fundo
 		image=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		
+		//Criando e Nomeando Array de Entidades
 		entities = new ArrayList<Entity>();
+		
+		//Chamando arquivo de imagem referente a variaveis
 		spritesheet = new Spritsheet("/spritesheet.png");
-		
-		player = new Player(0, 0, 64, 64, spritesheet.getSprite(0, 0, 64, 64));
-		entities.add(player);
-		
 		grass = new Spritsheet("/grass.png");
         floor = new Spritsheet("/floor.png");
         wall = new Spritsheet("/wall.png");
         
+        //Determinando e Adicionando Entidade
+		entities.add(new Player(0, 0, 64, 64, spritesheet.getSprite(0, 0, 64, 64)));
+		
+		//Apontando imagem referente ao Mapa Base
         world = new World("/map.png");
 		
 	}
 	
+	
+	//Void referente aos dados da tela
 	public void initFrame() {
+		
+		//Cria Tela
 		frame=new JFrame("#test game");
+		
+		//Aponta o que deve ser exibido
 		frame.add(this);
+		
+		//Determina se o usuario pode alterar ou não o tamanho da tela
 		frame.setResizable(false);
+		
+		//Responsavel por compactar a janela para o tamanho do monitor
 		frame.pack();
+		
+		//Determina a localização da tela no monitor
 		frame.setLocationRelativeTo(null);
+		
+		//Faz os processos pararem assim que a tela for fechada
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Torna tela visivel
 		frame.setVisible(true);
+		
 	}
 	
+	
+	//Synchonized serve para garantir o sincronismo do codigo quando este executar Threads
+	//Em resumo. Fazer com que mais de uma thread executar o codigo este não possa para evitar possiveis problemas.
+	
+	
 	public synchronized void start() {
+		
 		thread=new Thread(this);
 		isRunning=true;
 		thread.start();
+		
 	}
 	
 	public synchronized void stop() {
@@ -96,14 +134,23 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		}
 	}
 	
+	
+	//Chama o metodo game para ser rodado pela Thread.
+	
+	
 	public static void main(String args[]) {
 		
 		Game game=new Game();
 		game.start();
 	}
 	
+	
+	//Local onde colocamos as mecanicas do player
+	
+	
 	public void tick() {
 		
+		//Laço feito para a adição de entidades
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			
@@ -116,21 +163,28 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 	}
 	
+	
+	//Local onde colocamos o que será renderizado em tela
+	
+	
 	public void render() {
 		
-		BufferStrategy bs=this.getBufferStrategy();
+		BufferStrategy bs = this.getBufferStrategy();
 		
 		if(bs==null) {
 			this.createBufferStrategy(3);
 			return;
 		}
 		
-		Graphics g=image.getGraphics();
+		//Criação da Imagem de Fundo
+		Graphics g = image.getGraphics();
 		g.setColor(new Color(40,40,40));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
+		//Renderização da Classe Mundo
 		world.render(g);
 		
+		//Renderização das Entidades
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.render(g);
@@ -143,7 +197,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 	}
 	
+	
+	//Void com loop que encerra quando isRunning = false chamando a thread stop()
+	
+	
 	public void run() {
+		
 		long lastTime=System.nanoTime();
 		double amountOfTicks=60.0;
 		double ns=1000000000/amountOfTicks;
@@ -158,8 +217,14 @@ public class Game extends Canvas implements Runnable, KeyListener{
 				render();
 			}
 		}
+		
 		stop();
+		
 	}
+	
+	
+	//Inputs do Jogo
+	
 
 	@Override
 	public void keyTyped(KeyEvent e) {

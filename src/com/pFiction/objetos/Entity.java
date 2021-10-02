@@ -3,6 +3,8 @@ package com.pFiction.objetos;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.pFiction.main.Game;
+
 public class Entity {
 	
 	protected double x;

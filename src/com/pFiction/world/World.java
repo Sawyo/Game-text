@@ -34,31 +34,31 @@ public class World {
 					
 					int pixelAtual = pixels[xx + (yy*map.getWidth())];
 					
-					if (pixelAtual == 0xFF14155E) {
+					if (pixelAtual == 0xFF13155f) {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_GRASS);
 						
-					} else if (pixelAtual == 0xFFFFFFFF) {
+					} else if (pixelAtual == 0xFFffffff) {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_UP);
 						
-					} else if (pixelAtual == 0xFF7E7E7E) {
+					} else if (pixelAtual == 0xFF7f7f7f) {
 						
 						tiles[xx + (yy * WIDTH)] = new NotCollision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_MID);
 						
-					} else if (pixelAtual == 0xFFC2C2C2) {
+					} else if (pixelAtual == 0xFFc3c3c3) {
 						
 						tiles[xx + (yy * WIDTH)] = new NotCollision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_DOWN);
 						
-					} else if (pixelAtual == 0xFFFEF11C) {
+					} else if (pixelAtual == 0xFF) {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_EXTERIOR_WALL_UP);
 						
-					} else if (pixelAtual == 0xFF1EB04E) {
+					} else if (pixelAtual == 0xFF) {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_EXTERIOR_WALL_MID);
 						
-					} else if (pixelAtual == 0xFFB3E529) {
+					} else if (pixelAtual == 0xFF) {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_EXTERIOR_WALL_DOWN);
 						
@@ -66,12 +66,10 @@ public class World {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_TOP_DOWN);
 						
-					} else if (pixelAtual == 0xFFFFADC8) {
+					} else if (pixelAtual == 0xFF490252) {
 						//Player
-						
-						Game.player.setX(xx*64);
-						Game.player.setY(yy*64);
-						
+						Game.player.setX(xx*32);
+						Game.player.setY(yy*32);
 					} 
 					else {
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_FLOOR);
