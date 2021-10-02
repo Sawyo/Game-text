@@ -2,10 +2,6 @@ package com.pFiction.objetos;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.Graphics;
-
-import com.pFiction.main.Game;
-
 import com.pFiction.main.Game;
 
 public class Player extends Entity {

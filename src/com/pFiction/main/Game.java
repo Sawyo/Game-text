@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import com.pFiction.graficos.Spritsheet;
 import com.pFiction.objetos.Entity;
 import com.pFiction.objetos.Player;
+import com.pFiction.world.World;
 
 public class Game extends Canvas implements Runnable, KeyListener{
 
@@ -32,16 +33,21 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	private boolean isRunning = true;
 	
-	private final int HEIGHT = 256;
-	private final int WIDTH = 256;
-	private final int SCALE = 3;
+	private final int HEIGHT = 761;
+	private final int WIDTH = 761;
+	private final int SCALE = 1;
 	
 	private BufferedImage image;
 	
 	public List<Entity> entities;
 	public static Spritsheet spritesheet;
+	public static Spritsheet floor;
+    public static Spritsheet grass;
+    public static Spritsheet wall;
+    
+    public static World world;
 
-	private Player player;
+	public static Player player;
 	
 	public Game() {
 		
@@ -56,6 +62,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 		player = new Player(0, 0, 64, 64, spritesheet.getSprite(0, 0, 64, 64));
 		entities.add(player);
+		
+		grass = new Spritsheet("/grass.png");
+        floor = new Spritsheet("/floor.png");
+        wall = new Spritsheet("/wall.png");
+        
+        world = new World("/map.png");
 		
 	}
 	
@@ -116,6 +128,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		Graphics g=image.getGraphics();
 		g.setColor(new Color(40,40,40));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		world.render(g);
 		
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
