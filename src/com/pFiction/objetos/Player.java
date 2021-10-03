@@ -3,6 +3,7 @@ package com.pFiction.objetos;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import com.pFiction.main.Game;
+import com.pFiction.world.Camera;
 
 public class Player extends Entity {
 	
@@ -124,29 +125,34 @@ public class Player extends Entity {
 			}
 			
 		}
+		
+		
+		Camera.x = this.getX() - (Game.WIDTH/2) + 32;
+		Camera.y = this.getY() - (Game.HEIGHT/2);
+		
 			
 	}
 	
 	public void render(Graphics g) {
 		
 		if (left && down) {
-			g.drawImage(downleftplayer[index], this.getX(), this.getY(), null);
+			g.drawImage(downleftplayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		} else if(right && down) {
-			g.drawImage(downrightplayer[index], this.getX(), this.getY(), null);
+			g.drawImage(downrightplayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		}else if(up && left) {
-			g.drawImage(upleftplayer[index], this.getX(), this.getY(), null);
+			g.drawImage(upleftplayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		}else if(up && right) {
-			g.drawImage(uprightplayer[index], this.getX(), this.getY(), null);
+			g.drawImage(uprightplayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		} else if(right) {
-			g.drawImage(rightplayer[index], this.getX(), this.getY(), null);
+			g.drawImage(rightplayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		} else if (left) {
-			g.drawImage(leftplayer[index], this.getX(), this.getY(), null);
+			g.drawImage(leftplayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		} else if (up) {
-			g.drawImage(upplayer[index], this.getX(), this.getY(), null);
+			g.drawImage(upplayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		} else if (down) {
-			g.drawImage(downplayer[index], this.getX(), this.getY(), null);
+			g.drawImage(downplayer[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		} else {
-			g.drawImage(downplayer[1], this.getX(), this.getY(), null);
+			g.drawImage(downplayer[1], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		}
 	}
 

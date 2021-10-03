@@ -10,7 +10,6 @@ import com.pFiction.main.Game;
 import com.pFiction.objetos.Entity;
 import com.pFiction.objetos.Piano;
 import com.pFiction.world.tiles.Collision;
-import com.pFiction.world.tiles.NotCollision;
 
 public class World {
 	
@@ -64,7 +63,9 @@ public class World {
 						
 					} case 0xFF490252: {
 						
-						Game.entities.add(new Piano(xx*32, yy*32, 32, 32, Entity.PIANO));
+						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_FLOOR);
+						Game.player.setX(xx*32);
+						Game.player.setY(yy*32);
 						break;
 						
 					} default:
@@ -73,36 +74,6 @@ public class World {
 						break;
 						
 					}
-					
-					/**else if (pixelAtual == 0xFF7f7f7f) {
-						
-						tiles[xx + (yy * WIDTH)] = new NotCollision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_MID);
-						
-					} else if (pixelAtual == 0xFFc3c3c3) {
-						
-						tiles[xx + (yy * WIDTH)] = new NotCollision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_DOWN);
-						
-					} else if (pixelAtual == 0xFF) {
-						
-						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_EXTERIOR_WALL_UP);
-						
-					} else if (pixelAtual == 0xFF) {
-						
-						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_EXTERIOR_WALL_MID);
-						
-					} else if (pixelAtual == 0xFF) {
-						
-						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_EXTERIOR_WALL_DOWN);
-						
-					} else if (pixelAtual == 0xFF000000) {
-						
-						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_TOP_DOWN);
-						
-					} else {
-						
-						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_FLOOR);
-						
-					}*/
 					
 				}
 			}

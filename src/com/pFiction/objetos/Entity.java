@@ -4,10 +4,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.pFiction.main.Game;
+import com.pFiction.world.Camera;
 
 public class Entity {
 	
-	public static BufferedImage PIANO = Game.asset1.getSprite(560, 0, 120, 98);
+	public static BufferedImage PIANO = Game.asset1.getSprite(540, 0, 120, 98);
 	
 	protected double x;
 	protected double y;
@@ -57,7 +58,7 @@ public class Entity {
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(sprite,this.getX(),this.getY(),null);
+		g.drawImage(sprite,this.getX() - Camera.x, this.getY() - Camera.y,null);
 	}
 
 }

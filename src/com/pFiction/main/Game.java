@@ -31,9 +31,9 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	private boolean isRunning = true;
 	
 	//Constantes da Tela
-	private final int HEIGHT = 761;
-	private final int WIDTH = 761;
-	private final int SCALE = 1;
+	public final static int HEIGHT = 240;
+	public final static int WIDTH = 240;
+	public final int SCALE = 3;
 	
 	//Determinar o Tipo da variavel para a imagem de Fundo Padrão
 	private BufferedImage image;
@@ -190,7 +190,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			Entity e = entities.get(i);
 			e.render(g);
 		}
-		
 		g.dispose();
 		g=bs.getDrawGraphics();
 		g.drawImage(image,0,0,WIDTH*SCALE,HEIGHT*SCALE,null);
