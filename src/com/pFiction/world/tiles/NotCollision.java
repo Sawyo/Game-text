@@ -6,6 +6,7 @@ import com.pFiction.world.Tile;
 
 public class NotCollision extends Tile {
 
+	//Metodo contrutor herdado de Tile
 	public NotCollision(int x, int y, BufferedImage sprite) {
 		super(x, y, sprite);
 	}
