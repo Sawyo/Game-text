@@ -47,7 +47,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
     public static Spritsheet grass;
     public static Spritsheet wall;
     public static Spritsheet asset1;
-    public static Spritsheet asset2;
     
     
     public static World world;
@@ -76,9 +75,11 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		grass = new Spritsheet("/grass.png");
         floor = new Spritsheet("/floor.png");
         wall = new Spritsheet("/wall.png");
+        asset1 = new Spritsheet("/asset1.png");
         
         //Determinando e Adicionando Entidade
-		entities.add(new Player(0, 0, 64, 64, spritesheet.getSprite(0, 0, 64, 64)));
+        player = new Player(14*32, 22*32, 64, 64, spritesheet.getSprite(0, 0, 64, 64));
+		entities.add(player);
 		
 		//Apontando imagem referente ao Mapa Base
         world = new World("/map.png");

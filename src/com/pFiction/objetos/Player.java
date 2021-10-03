@@ -61,7 +61,7 @@ public class Player extends Entity {
 		}
 		
 	}
-	
+
 	public void tick() {
 		
 		moved = false;

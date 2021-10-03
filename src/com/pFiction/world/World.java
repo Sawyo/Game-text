@@ -7,6 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.pFiction.main.Game;
+import com.pFiction.objetos.Entity;
+import com.pFiction.objetos.Piano;
 import com.pFiction.world.tiles.Collision;
 import com.pFiction.world.tiles.NotCollision;
 
@@ -34,15 +36,45 @@ public class World {
 					
 					int pixelAtual = pixels[xx + (yy*map.getWidth())];
 					
-					if (pixelAtual == 0xFF13155f) {
+					switch (pixelAtual) {
+					case 0xFF13155f: {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_GRASS);
+						break;
 						
-					} else if (pixelAtual == 0xFFffffff) {
+					} case 0xFFffffff: {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_UP);
+						break;
 						
-					} else if (pixelAtual == 0xFF7f7f7f) {
+					} case 0xFF7f7f7f: {
+						
+						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_MID);
+						break;
+						
+					} case 0xFFc3c3c3: {
+						
+						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_DOWN);
+						break;
+						
+					} case 0xFF000000: {
+						
+						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_TOP_DOWN);
+						break;
+						
+					} case 0xFF490252: {
+						
+						Game.entities.add(new Piano(xx*32, yy*32, 32, 32, Entity.PIANO));
+						break;
+						
+					} default:
+						
+						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_FLOOR);
+						break;
+						
+					}
+					
+					/**else if (pixelAtual == 0xFF7f7f7f) {
 						
 						tiles[xx + (yy * WIDTH)] = new NotCollision(xx*32, yy*32, Tile.TILE_INTERIOR_WALL_MID);
 						
@@ -66,14 +98,11 @@ public class World {
 						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_TOP_DOWN);
 						
-					} else if (pixelAtual == 0xFF490252) {
-						//Player
-						Game.player.setX(xx*32);
-						Game.player.setY(yy*32);
-					} 
-					else {
+					} else {
+						
 						tiles[xx + (yy * WIDTH)] = new Collision(xx*32, yy*32, Tile.TILE_FLOOR);
-					}
+						
+					}*/
 					
 				}
 			}

@@ -16,10 +16,12 @@ public class Spritsheet {
 	public Spritsheet(String path)
 	{
 		try {
+			
 			spritesheet=ImageIO.read(getClass().getResource(path));
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	

@@ -7,6 +7,8 @@ import com.pFiction.main.Game;
 
 public class Entity {
 	
+	public static BufferedImage PIANO = Game.asset1.getSprite(560, 0, 120, 98);
+	
 	protected double x;
 	protected double y;
 	protected int width;
@@ -25,11 +27,13 @@ public class Entity {
 	}
 	
 	public void setX(int newX) {
-		this.x = newX;
+		
+		this.x = (int)newX;
+		
 	}
 	
 	public void setY(int newY) {
-		this.y = newY;
+		this.y = (int)newY;
 	}
 	
 	public int getX() {
