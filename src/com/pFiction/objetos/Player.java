@@ -11,7 +11,7 @@ public class Player extends Entity {
 	public boolean right, up, down, left;
 	
 	//Velocidade de Caminhada do Player
-	public double speed = 0.5;
+	public double speed = 0.25;
 	
 	//Variaveis que apontam a quantos frames o player se locomove
 	private int frames = 0, maxFrames = 26, index = 0, maxindex = 24;
@@ -142,7 +142,7 @@ public class Player extends Entity {
 		}
 		
 		//Acompanhamento do player pela Camera
-		Camera.x = this.getX() - (Game.WIDTH/2)+32;
+		Camera.x = this.getX() - (Game.WIDTH/2) + 32;
 		Camera.y = this.getY() - (Game.HEIGHT/2);
 		
 			

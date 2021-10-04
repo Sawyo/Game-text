@@ -132,9 +132,20 @@ public class World {
 	// Apontando que Tiles serão exibidos na tela.
 	public void render(Graphics g) {
 		
-		for(int xx = 0; xx < WIDTH; xx++) {
+		//Definir inicio do que deve ser renderizado
+		int xstart = Camera.x/32;
+		int ystart = Camera.y/32;
+		
+		//Definir final do que deve ser renderizado
+		int xfinal = xstart + (Game.WIDTH / 32);
+		int yfinal = ystart + (Game.HEIGHT / 32);
+		
+		for(int xx = xstart; xx <= xfinal; xx++) {
 			
-			for(int yy = 0; yy < HEIGHT; yy++) {
+			for(int yy = ystart; yy <= yfinal; yy++) {
+				
+				if(xx < 0 || yy <0 || xx >= WIDTH || yy >= HEIGHT)
+					continue;
 				
 				Tile tile = tiles[xx+(yy*WIDTH)];
 				tile.render(g);
